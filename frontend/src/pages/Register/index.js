@@ -38,7 +38,7 @@ const Register = ({ location }) => {
       password
     }
 
-    await api.post('/register', data)
+    await api.post('register', data)
 
 
     history.push('/login')

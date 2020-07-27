@@ -14,7 +14,7 @@ const WatchCard = ({ title, year, poster }) => {
             userId: user.id
         }
 
-        await api.post('/deleteItem', data)
+        await api.delete('/deleteItem', { data })
     }
 
     return (

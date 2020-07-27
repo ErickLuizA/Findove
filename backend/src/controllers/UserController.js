@@ -33,9 +33,9 @@ module.exports = {
       
       try {
         if(await bcrypt.compare(password, user.password)) {
-          const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+          const token = jwt.sign(user.id, process.env.ACCESS_TOKEN_SECRET)
           
-          return res.json({user: user, token})
+          return res.json({user: {name: user.name, id: user.id}, token})
         }
       } catch (error) {
         return res.status(400)

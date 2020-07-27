@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
     if(err) {
       return res.status(403)
     } else {
-      req.userId = decodedToken.id
+      req.userId = decodedToken
       next()
     }
   })
