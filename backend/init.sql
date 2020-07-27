@@ -4,3 +4,11 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE movies (
+  ID SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  year INT NOT NULL,
+  poster VARCHAR(255) NOT NULL,
+  userId INT NOT NULL
+);
