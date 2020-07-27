@@ -1,0 +1,17 @@
+const express = require('express')
+const router = express.Router()
+
+const UserController = require('./controllers/UserController')
+const verifyToken = require('./utils/verifyToken')
+
+router.post('/register', UserController.create)
+
+router.post('/login', UserController.login)
+
+router.post('/watchlater', verifyToken, UserController.addList)
+
+router.get('/watchlater', verifyToken, UserController.getList)
+
+router.post('/deleteItem', verifyToken, UserController.deleteItem)
+
+module.exports = router

@@ -1,0 +1,10 @@
+@import "tailwindcss/base";
+
+body {
+  @apply bg-primary;
+  @apply h-full;
+}
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
