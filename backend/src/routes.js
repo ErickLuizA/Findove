@@ -16,6 +16,6 @@ router.post('/watchlater', verifyToken, UserController.addList)
 
 router.get('/watchlater', verifyToken, UserController.getList)
 
-router.post('/deleteItem', verifyToken, UserController.deleteItem)
+router.delete('/deleteItem', verifyToken, UserController.deleteItem)
 
 module.exports = router
