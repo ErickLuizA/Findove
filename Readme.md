@@ -1,5 +1,5 @@
 <p align="center"> 
-  <img alt="Findove icon" src="./frontend/src/assets/logo.png" width="100"/>
+  <img alt="Findove icon" src="./frontend/src/assets/logo.png" width="280"/>
 </p> 
 
 <h1 align="center"> Findove </h1>
