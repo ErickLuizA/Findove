@@ -11,7 +11,7 @@ const useAuth = () => {
     if(storagedUser && storagedToken) {
       setUser(JSON.parse(storagedUser))
 
-      api.defaults.headers.common = {'Authorization': storagedToken}
+      api.defaults.headers.Authorization = `Bearer ${storagedToken}`
     }
   }, [])
 
@@ -24,7 +24,7 @@ const useAuth = () => {
   const signOut = () => {
     setUser(null)
 
-    api.defaults.headers.common = { 'Authorization': undefined }
+    api.defaults.headers.Authorization = `Bearer ${undefined}`
 
     localStorage.removeItem('@findove-app/user')
     localStorage.removeItem('@findove-app/token')

@@ -35,7 +35,7 @@ module.exports = {
         if(await bcrypt.compare(password, user.password)) {
           const token = jwt.sign(user.id, process.env.ACCESS_TOKEN_SECRET)
           
-          return res.json({user: {name: user.name, id: user.id}, token})
+          return res.json({user: user.name, token})
         }
       } catch (error) {
         return res.status(400)
@@ -62,8 +62,8 @@ module.exports = {
   getList: (req, res) => {
     const userId = req.userId
 
-    const sql = 'SELECT Title, Year, Poster FROM movies WHERE userId = $1'
-    const values = [userId]
+    const sql = 'SELECT DISTINCT Title, Year, Poster FROM movies INNER JOIN users ON movies.userid = $1'
+    const values = [userId]                                                                                                                                                                                                                                                                   
 
     pool.query(sql, values, (err, result) => {
       if (err) return res.status(400)
@@ -76,7 +76,7 @@ module.exports = {
     const { title, year, poster } = req.body
     const userId = req.userId
 
-    const sql = 'DELETE FROM movies WHERE title = $1 AND year = $2 AND poster = $3 AND userId = $4'
+    const sql = 'DELETE FROM movies WHERE title = $1 AND year = $2 AND poster = $3 AND userId = $4'                                                                 
     const values = [title, year, poster, userId]
 
     pool.query(sql, values, (err, result) => {

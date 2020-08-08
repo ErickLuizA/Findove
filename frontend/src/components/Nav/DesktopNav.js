@@ -12,7 +12,7 @@ export default function DesktopNav() {
       <div className="my-10 xl:my-20 border-r border-gray-700 pr-8">
         <FaUserAlt size="2.5rem" className="m-auto"/>
         {signed ?
-         <p className="pt-2 whitespace-no-wrap"> Hi, {user.name} </p> :
+         <p className="pt-2 whitespace-no-wrap"> Hi, {user} </p> :
          <p className="pt-2 whitespace-no-wrap"> Hi, Stranger</p>}
       </div>
       <nav className="flex flex-col">

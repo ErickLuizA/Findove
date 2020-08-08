@@ -5,12 +5,14 @@ module.exports = function(req, res, next) {
 
   if(!authorization) return res.status(401)
 
-  jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken) => {
+  const [scheme, token] = authorization.split(" ")
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken) => {
     if(err) {
       return res.status(403)
     } else {
       req.userId = decodedToken
-      next()
+      return next()
     }
   })
 }
