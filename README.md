@@ -1,8 +1,6 @@
 <p align="center"> 
-  <img alt="Findove icon" src="./frontend/src/assets/logo.png" width="280"/>
+  <img alt="Findove icon" src="./src/assets/logo.png" width="280"/>
 </p> 
-
-<h1 align="center"> Findove </h1>
 
 <p align="center">
   <a href="https://github.com/ErickLuizA/Findove/graphs/commit-activity" alt="Maintenance">
@@ -43,48 +41,34 @@ Findove is a app where you can search for a movie, and add them to a watch later
 
 ## :building_construction: Technologies
 - [ReactJS](https://www.reactjs.org)
-- [Node.js](https://www.nodejs.org)
-- [Postgresql](https://www.postgresql.org)
 - [TailwindCSS](https://tailwindcss.com)
-
 
 
 ## :rocket: Getting Started
 
-1. Download the repository
+## 1. Download the repository
 
 ```shell
  $ git clone https://github.com/ErickLuizA/Findove.git
 ```
 
-2. Installation
+## 2. Installation
 
 ``` shell
 # Go into the repository
 $ cd findove
 
-# Go into backend
-$ cd backend
-
-# Install dependencies
-$ yarn install
-
-# On another terminal, go to the frontend folder
-$ cd ../frontend
-
 # Install dependencies
 $ yarn install
 ```
 
-3. Execution
+## 3. Execution
 
 ```shell
-# Start the backend
-$ yarn dev
-
-# Start the frontend
 $ yarn start
 ```
+
+> [Live Demo](https://findove.netlify.app/)
 
 
 ## :memo: License
@@ -93,4 +77,4 @@ This project is under the MIT license. See the file [LICENSE](LICENSE) for more 
 
 ---
 
-Build with 💙 By [Erick](https://erickluiz.netlify.app/)
+Build with 💙 By [Erick](https://www.linkedin.com/in/erick-luiz-47151a1a4/)
