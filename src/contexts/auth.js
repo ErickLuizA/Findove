@@ -1,10 +1,10 @@
 import React, { createContext } from 'react'
+
 import useAuth from '../hooks/useAuth'
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({ children }) => {
-
+const AuthProvider = ({ children }) => {
   const { user, signIn, signOut } = useAuth()
 
   return (
@@ -14,4 +14,4 @@ export const AuthProvider = ({ children }) => {
   )
 }
 
-export default AuthContext
+export { AuthContext, AuthProvider }
