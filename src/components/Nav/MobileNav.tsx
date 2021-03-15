@@ -1,11 +1,14 @@
+/* eslint-disable */
+
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
-import AuthContext from '../../contexts/auth'
+import { AuthContext } from '../../contexts/auth'
 
-export default function DesktopNav () {
+export default function DesktopNav (): JSX.Element {
   const [toggle, setToggle] = useState(false)
+
   const { signed } = useContext(AuthContext)
 
   return (
@@ -14,13 +17,13 @@ export default function DesktopNav () {
         <h3 className='font-serif font-bold text-2xl hover:text-white'>Findove</h3>
         {!toggle
           ? <FaBars
-              className='h-6 w-6 hover:text-white cursor-pointer my-auto'
-              onClick={() => setToggle(state => !state)}
-            />
+            className='h-6 w-6 hover:text-white cursor-pointer my-auto'
+            onClick={() => setToggle(state => !state)}
+          />
           : <FaTimes
-              className='h-6 w-6 hover:text-white cursor-pointer my-auto'
-              onClick={() => setToggle(state => !state)}
-            />}
+            className='h-6 w-6 hover:text-white cursor-pointer my-auto'
+            onClick={() => setToggle(state => !state)}
+          />}
       </div>
       <nav className={toggle ? 'flex flex-col items-center' : 'hidden'}>
         <Link to='/' className='hover:text-white pb-1'>
@@ -33,7 +36,7 @@ export default function DesktopNav () {
                 Watch Later
               </Link>
               <button className='hover:text-white'>Logout</button>
-              </>
+            </>
             : <>
               <Link to='/watchlater' className='hover:text-white pb-4'>
                 Watch Later
@@ -44,7 +47,7 @@ export default function DesktopNav () {
               <Link to='/register' className='hover:text-white pb-1'>
                 Register
               </Link>
-            </>
+              </>
         }
       </nav>
     </div>

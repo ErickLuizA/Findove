@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 
-export default function useViewport () {
+export default function useViewport (): { width: number} {
   const [width, setWidth] = useState(window.innerWidth)
 
   useEffect(() => {
-    const handleWindowResize = () => setWidth(window.innerWidth)
+    const handleWindowResize = (): void => setWidth(window.innerWidth)
 
     window.addEventListener('resize', handleWindowResize)
 

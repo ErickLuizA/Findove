@@ -2,7 +2,7 @@ import Routes from './routes'
 
 import { AuthProvider } from './contexts/auth'
 
-export default function App () {
+export default function App (): JSX.Element {
   return (
     <AuthProvider>
       <Routes />

@@ -1,16 +1,21 @@
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { useState } from 'react'
 
-export default function Search ({ handleSearch }) {
+interface ISearch {
+  handleSearch: (searchValue: string) => Promise<void>
+}
+
+export default function Search ({ handleSearch }: ISearch): JSX.Element {
   const [search, setSearch] = useState('')
 
-  function handleInputChange (e) {
+  function handleInputChange (e: ChangeEvent<HTMLInputElement>): void {
     setSearch(e.target.value)
   }
 
-  function handleForm (e) {
+  async function handleForm (e: FormEvent): Promise<void> {
     e.preventDefault()
-    handleSearch(search)
+
+    await handleSearch(search)
   }
 
   return (
