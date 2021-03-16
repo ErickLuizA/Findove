@@ -1,15 +1,13 @@
 
 import { Movie } from '../../models/Movie'
-import WatchLaterRepository from '../../repositories/WatchLaterRepository'
 import Card from './Card'
 
 interface ICardList {
   movies: Movie[]
-  watchLaterRepository: WatchLaterRepository
-
+  handleAddList: () => void
 }
 
-export default function CardList ({ movies, watchLaterRepository }: ICardList): JSX.Element {
+export default function CardList ({ movies, handleAddList }: ICardList): JSX.Element {
   return (
     <div className='flex flex-wrap'>
       {movies.map((movie, index) => {
@@ -17,7 +15,7 @@ export default function CardList ({ movies, watchLaterRepository }: ICardList): 
           <Card
             key={index}
             movie={movie}
-            watchLaterRepository={watchLaterRepository}
+            handleAddList={handleAddList}
           />
         )
       })}

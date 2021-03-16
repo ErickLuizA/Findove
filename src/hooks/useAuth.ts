@@ -22,6 +22,8 @@ export default function useAuth (): IAuthContext {
   async function signIn (response: User): Promise<void> {
     setUser(response.user)
 
+    api.defaults.headers.Authorization = `Bearer ${response.token}`
+
     localStorage.setItem('@findove-app/user', response.user)
     localStorage.setItem('@findove-app/token', response.token)
   }

@@ -4,19 +4,13 @@ import { AuthContext } from '../../contexts/auth'
 
 import { Movie } from '../../models/Movie'
 
-import WatchLaterRepository from '../../repositories/WatchLaterRepository'
-
 interface ICard {
-  watchLaterRepository: WatchLaterRepository
+  handleAddList: (movie: Movie) => void
   movie: Movie
 }
 
-export default function Card ({ movie, watchLaterRepository }: ICard): JSX.Element {
+export default function Card ({ movie, handleAddList }: ICard): JSX.Element {
   const { signed } = useContext(AuthContext)
-
-  const handleAddList = async (): Promise<void> => {
-    await watchLaterRepository.addMovie(movie)
-  }
 
   return (
     <div className='mx-auto my-3 text-secondary'>
@@ -26,7 +20,7 @@ export default function Card ({ movie, watchLaterRepository }: ICard): JSX.Eleme
           <h3> {movie.Year} </h3>
         </div>
         <img className='mx-auto' src={movie.Poster} alt={movie.Title} />
-        {signed ? <button onClick={handleAddList} className='w-full focus:outline-none border-secondary border-2 p-1 mt-1 hover:bg-secondary hover:text-primary'>Watch Later</button> : null}
+        {signed ? <button onClick={() => handleAddList(movie)} className='w-full focus:outline-none border-secondary border-2 p-1 mt-1 hover:bg-secondary hover:text-primary'>Watch Later</button> : null}
       </div>
     </div>
   )

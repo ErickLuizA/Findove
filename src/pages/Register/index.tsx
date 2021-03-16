@@ -3,15 +3,18 @@ import { useHistory } from 'react-router-dom'
 
 import useViewport from '../../hooks/useViewport'
 
+import UserRepository, { IRegisterParams } from '../../repositories/UserRepository'
+
 import Container from '../../components/Container'
 import DesktopNav from '../../components/Nav/DesktopNav'
 import MobileNav from '../../components/Nav/MobileNav'
-import UserRepository, { IRegisterParams } from '../../repositories/UserRepository'
 
 export default function Register (userRepository: UserRepository): JSX.Element {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const [error, setError] = useState('')
 
   const { width } = useViewport()
 
@@ -43,7 +46,13 @@ export default function Register (userRepository: UserRepository): JSX.Element {
 
       history.push('/login')
     } catch (error) {
-      alert('error')
+      const msg = error.message as string
+
+      if (msg.includes('400')) {
+        setError('User already exists')
+      } else {
+        setError('Network Error')
+      }
     }
   }
 
@@ -94,6 +103,9 @@ export default function Register (userRepository: UserRepository): JSX.Element {
             value={password}
             onChange={handlePassword}
           />
+
+          {error !== '' ? <p className='text-red-500 text-sm'> {error} </p> : null}
+
           <button
             type='submit'
             className='border-secondary focus:outline-none border-2 p-1 mt-1 hover:bg-secondary hover:text-primary'
