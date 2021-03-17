@@ -20,21 +20,22 @@ interface IMovies {
   movies?: Movie[]
 }
 
-export default function Home (movieRepository: MovieRepository, watchLaterRepository: WatchLaterRepository): JSX.Element {
+export default function Home(
+  movieRepository: MovieRepository,
+  watchLaterRepository: WatchLaterRepository
+): JSX.Element {
   const [movies, setMovies] = useState<IMovies>({
     loading: false,
     error: '',
-    movies: []
+    movies: [],
   })
-
-  const [deleteFailure, setDeleteFailure] = useState(false)
 
   const { width } = useViewport()
 
-  async function handleSearch (searchValue: string): Promise<void> {
+  async function handleSearch(searchValue: string): Promise<void> {
     setMovies({
       error: '',
-      loading: true
+      loading: true,
     })
 
     try {
@@ -43,12 +44,12 @@ export default function Home (movieRepository: MovieRepository, watchLaterReposi
       setMovies({
         error: result.data.Search === undefined ? 'Movie not found' : '',
         loading: false,
-        movies: result.data.Search
+        movies: result.data.Search,
       })
     } catch (e) {
       setMovies({
         error: 'Network error',
-        loading: false
+        loading: false,
       })
     }
   }
@@ -57,7 +58,7 @@ export default function Home (movieRepository: MovieRepository, watchLaterReposi
     try {
       await watchLaterRepository.addMovie(movie)
     } catch (error) {
-      setDeleteFailure(true)
+      alert('Error in trying to add movie')
     }
   }
 
@@ -65,16 +66,26 @@ export default function Home (movieRepository: MovieRepository, watchLaterReposi
     <Container>
       <>
         {width < 768 ? <MobileNav /> : <DesktopNav />}
-        <main className='w-full'>
+        <main className="w-full">
           <Search handleSearch={handleSearch} />
-          <div className='flex justify-center items-center h-full align-middle'>
-            {movies.loading
-              ? <FaSpinner className='text-6xl text-secondary animate-spin' />
-              : movies.error !== ''
-                ? <div> <FaExclamationTriangle className='text-6xl text-secondary mx-auto' /> <h3 className='text-secondary'> {movies.error} </h3> </div>
-                : movies.movies !== undefined && movies.movies.length > 0
-                  ? <CardList movies={movies.movies} handleAddList={() => handleAddList} />
-                  : <div> <FaFilm className='text-6xl text-secondary mx-auto' /> <h3 className='text-secondary'> Search for a movie</h3>  </div>}
+          <div className="flex justify-center items-center h-full align-middle">
+            {movies.loading ? (
+              <FaSpinner className="text-6xl text-secondary animate-spin" />
+            ) : movies.error !== '' ? (
+              <div>
+                {' '}
+                <FaExclamationTriangle className="text-6xl text-secondary mx-auto" />{' '}
+                <h3 className="text-secondary"> {movies.error} </h3>{' '}
+              </div>
+            ) : movies.movies !== undefined && movies.movies.length > 0 ? (
+              <CardList movies={movies.movies} handleAddList={handleAddList} />
+            ) : (
+              <div>
+                {' '}
+                <FaFilm className="text-6xl text-secondary mx-auto" />{' '}
+                <h3 className="text-secondary"> Search for a movie</h3>{' '}
+              </div>
+            )}
           </div>
         </main>
       </>

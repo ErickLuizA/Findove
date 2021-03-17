@@ -4,7 +4,7 @@ import Card from './Card'
 
 interface ICardList {
   movies: Movie[]
-  handleAddList: () => void
+  handleAddList: (movie: Movie) => Promise<void>
 }
 
 export default function CardList ({ movies, handleAddList }: ICardList): JSX.Element {

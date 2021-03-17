@@ -17,30 +17,30 @@ interface IMovies {
   movies?: Movie[]
 }
 
-export default function WatchLater (watchLaterRepository: WatchLaterRepository): JSX.Element {
+export default function WatchLater(
+  watchLaterRepository: WatchLaterRepository
+): JSX.Element {
   const [movies, setMovies] = useState<IMovies>({
-    loading: false,
-    movies: []
+    loading: true,
+    movies: [],
   })
-
-  const [deleteFailure, setDeleteFailure] = useState(false)
 
   const { width } = useViewport()
 
   useEffect(() => {
     // eslint-disable-next-line
-    (async () => {
+    ;(async () => {
       try {
         const result = await watchLaterRepository.getMovie()
 
         setMovies({
           movies: result.data,
-          loading: false
+          loading: false,
         })
       } catch (error) {
         setMovies({
           movies: [],
-          loading: false
+          loading: false,
         })
       }
     })()
@@ -49,8 +49,15 @@ export default function WatchLater (watchLaterRepository: WatchLaterRepository):
   const handleDelete = async (movie: Movie): Promise<void> => {
     try {
       await watchLaterRepository.deleteMovie(movie)
+
+      const newList = movies.movies?.filter(val => val.id !== movie.id)
+
+      setMovies({
+        loading: false,
+        movies: newList,
+      })
     } catch (error) {
-      setDeleteFailure(true)
+      alert('Error in trying to delete movie')
     }
   }
 
@@ -58,20 +65,24 @@ export default function WatchLater (watchLaterRepository: WatchLaterRepository):
     <Container>
       <>
         {width < 768 ? <MobileNav /> : <DesktopNav />}
-        <div className='flex flex-col'>
-          <h1 className='mx-auto text-2xl text-secondary border-b-4 border-secondary mb-4'>Watch Later List</h1>
-          <div className='flex flex-wrap'>
-            {movies.loading
-              ? <FaSpinner className='text-6xl text-center text-secondary animate-spin' />
-              : movies.movies !== undefined && movies.movies?.length > 0
-                ? movies.movies?.map((movie, index) => (
-                  <WatchCard
-                    key={index}
-                    handleDelete={async () => await handleDelete(movie)}
-                    movie={movie}
-                  />
-                ))
-                : <h1>Nothing to display</h1>}
+        <div className="flex flex-col justify-center items-center align-middle">
+          <h1 className="mx-auto text-2xl text-secondary border-b-4 border-secondary mb-4">
+            Watch Later List
+          </h1>
+          <div className="flex flex-wrap">
+            {movies.loading ? (
+              <FaSpinner className="text-6xl text-center text-secondary animate-spin" />
+            ) : movies.movies !== undefined && movies.movies?.length > 0 ? (
+              movies.movies?.map((movie, index) => (
+                <WatchCard
+                  key={index}
+                  handleDelete={async () => await handleDelete(movie)}
+                  movie={movie}
+                />
+              ))
+            ) : (
+              <h1>Nothing to display</h1>
+            )}
           </div>
         </div>
       </>
