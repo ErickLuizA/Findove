@@ -30,7 +30,8 @@
   <a href="#clipboard-description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#building_construction-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-license">License</a>
+  <a href="#memo-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#framed_picture-screenshots">Screenshots</a>
 </p>
 
 
@@ -67,6 +68,16 @@ $ yarn install
 ```shell
 $ yarn start
 ```
+
+
+## :framed_picture: Screenshots
+
+<div>
+  <img alt="Findove image" src="./.github/register.png"  width="500"/>
+  <img alt="Findove image" src="./.github/login.png"  width="500"/>
+  <img alt="Findove image" src="./.github/home.png"  width="500"/>
+  <img alt="Findove image" src="./.github/watchlater.png"  width="500"/>
+</div>
 
 > [Live Demo](https://findove.netlify.app/)
 
